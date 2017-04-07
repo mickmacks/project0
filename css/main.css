@@ -8,7 +8,7 @@ body {
 
 	background-color: #111111;
 	margin: 0px;
-	padding: px;
+	padding: 0px;
 
 }
 
@@ -27,21 +27,28 @@ h4 {
 
 }
 
+img {
+
+	-webkit-filter: drop-shadow(5px 5px 5px #76acac);
+	filter: drop-shadow(5px 5px 5px #76acac);
+
+}
+
 #gameboard {
 
-	background-color: #222222;
+	background-color: #def3f3;
 	margin: 50px 100px 0px 100px;
 	height: 600px;
 	width: 1400px;
+	/*overflow: hidden;*/
 
 }
 
 #character {
 
     position: absolute;
-    width: 40px;
-    height: 60px;
-    background: red;
+    width: 80px;
+    height: 120px;
 
 }
 
@@ -60,6 +67,11 @@ h4 {
 
 }
 
-i.material-icons {
-	padding-top: 10px;
+#player1Score {
+
+	padding-left: 40px;
+	margin-top: 0px;
+	font-size: 2em;
+
 }
+

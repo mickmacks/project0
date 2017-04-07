@@ -7,6 +7,42 @@ window.onload = function(){
 	var p1Count = document.getElementById('player1Count');
 	p1Count.innerHTML = p1CurrCount;
 
+    // Create a constructor functions to create and space out multiple divs.
+    function CreateCollectible (id, lat, lng, src) {
+
+    	// Create a div (collectible)
+    	this.img = document.createElement('img'),
+    	this.id = id,
+
+    	// Set the position of the collectible.
+    	this.img.style.width = '48px',
+    	this.img.style.height = '48px',
+    	this.img.src = src,
+    	this.img.style.top = '30px',
+    	this.img.style.left = '30px',
+    	this.img.style.marginLeft = lat + 'px',
+    	this.img.style.marginTop = lng + 'px',
+    	this.img.style.display = 'inline-block',
+    	this.img.style.float = 'left'
+
+
+    	document.getElementById('gameboard').appendChild(this.img);
+
+    };
+
+    // Add the collectible to the board
+
+    var collectible1 = new CreateCollectible (1, 200, 200, 'imgs/cabbage.png');
+    var collectible2 = new CreateCollectible (2, 200, 200, 'imgs/chili.png');
+    var collectible3 = new CreateCollectible (3, 200, 200, 'imgs/egg.png');
+    var collectible4 = new CreateCollectible (4, 200, 200, 'imgs/garlic.png');
+    var collectible5 = new CreateCollectible (5, 200, 200, 'imgs/meat.png');
+    var collectible6 = new CreateCollectible (6, 200, 200, 'imgs/mushroom.png');
+    var collectible7 = new CreateCollectible (7, 200, 200, 'imgs/onion.png');
+    var collectible8 = new CreateCollectible (8, 200, 200, 'imgs/rice.png');
+    var collectible9 = new CreateCollectible (9, 200, 200, 'imgs/sauce.png');
+    var collectible10 = new CreateCollectible (10, 200, 200, 'imgs/sprout.png');
+
     /// store key codes and currently pressed ones
     var keys = {};
         keys.UP = 38;
@@ -17,29 +53,10 @@ window.onload = function(){
     /// store reference to character's position and element
     var character = {
       x: 180,
-      y: 100,
+      y: 500,
       speedMultiplier: 10,
       element: document.getElementById("character")
     };
-
-    // // store reference to collectible position and element
-    // function Collectible (lat, lng) {
-
-    // 	this.id = 
-    // 	this.x = 30, 
-    // 	this.y = 30,
-    // 	this.element.style.left = lat,
-    // 	this.element.style.top = lng
-    // };
-
-    // var collectible1 = new Collectible (200, 500);
-
-
-    // Creating a DOM element.
-    var div = document.createElement('div');
-	div.innerHTML = "my <b>new</b> skill - <large>DOM maniuplation!</large>";
-	div.setAttribute('id', 'collectible1');
-	document.getElementById('gameboard').appendChild(div);
 
     /// key detection (better to use addEventListener, but this will do)
     document.body.onkeyup = 
