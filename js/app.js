@@ -2,6 +2,11 @@ console.log('Working JS');
 
 window.onload = function(){ 
 
+	// store collectible values
+	var p1CurrCount = 0;
+	var p1Count = document.getElementById('player1Count');
+	p1Count.innerHTML = p1CurrCount;
+
     /// store key codes and currently pressed ones
     var keys = {};
         keys.UP = 38;
@@ -11,18 +16,30 @@ window.onload = function(){
 
     /// store reference to character's position and element
     var character = {
-      x: 100,
+      x: 180,
       y: 100,
       speedMultiplier: 10,
       element: document.getElementById("character")
     };
 
-    // store reference to collectible position and element
-    var collectible = {
-    	x: 500, 
-    	y: 500,
-    	element: document.getElementById("collectible")
-    };
+    // // store reference to collectible position and element
+    // function Collectible (lat, lng) {
+
+    // 	this.id = 
+    // 	this.x = 30, 
+    // 	this.y = 30,
+    // 	this.element.style.left = lat,
+    // 	this.element.style.top = lng
+    // };
+
+    // var collectible1 = new Collectible (200, 500);
+
+
+    // Creating a DOM element.
+    var div = document.createElement('div');
+	div.innerHTML = "my <b>new</b> skill - <large>DOM maniuplation!</large>";
+	div.setAttribute('id', 'collectible1');
+	document.getElementById('gameboard').appendChild(div);
 
     /// key detection (better to use addEventListener, but this will do)
     document.body.onkeyup = 
@@ -59,8 +76,8 @@ window.onload = function(){
       if ( keys[keys.DOWN] ) {
         moveCharacter(0, 1);
       }
-	  if (character.y <= 180) {
-	    character.y = 180;
+	  if (character.y <= 220) {
+	    character.y = 220;
 	  }
 	  if (character.x <= 110) {
 	    character.x = 110;
@@ -68,8 +85,8 @@ window.onload = function(){
 	  if (character.x >= 1450) {
 	    character.x = 1450;
 	  }
-	  if (character.y >= 700) {
-	    character.y = 700;
+	  if (character.y >= 740) {
+	    character.y = 740;
 	  }
 
     };
