@@ -19,12 +19,10 @@ window.onload = function(){
 
     // store reference to collectible position and element
     var collectible = {
-    	x: 200, 
-    	y: 200,
+    	x: 500, 
+    	y: 500,
     	element: document.getElementById("collectible")
     };
-
-
 
     /// key detection (better to use addEventListener, but this will do)
     document.body.onkeyup = 
@@ -61,7 +59,18 @@ window.onload = function(){
       if ( keys[keys.DOWN] ) {
         moveCharacter(0, 1);
       }
-
+	  if (character.y <= 180) {
+	    character.y = 180;
+	  }
+	  if (character.x <= 110) {
+	    character.x = 110;
+	  }
+	  if (character.x >= 1450) {
+	    character.x = 1450;
+	  }
+	  if (character.y >= 700) {
+	    character.y = 700;
+	  }
 
     };
 
