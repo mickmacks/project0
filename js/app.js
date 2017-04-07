@@ -12,7 +12,8 @@ window.onload = function(){
 
     	// Create a div (collectible)
     	this.img = document.createElement('img'),
-    	this.id = id,
+    	this.img.id = id,
+    	this.img.className = 'collectibles',
 
     	// Set the position of the collectible.
     	this.img.style.width = '48px',
@@ -24,7 +25,6 @@ window.onload = function(){
     	this.img.style.marginTop = lng + 'px',
     	this.img.style.display = 'inline-block',
     	this.img.style.float = 'left'
-
 
     	document.getElementById('gameboard').appendChild(this.img);
 
@@ -42,6 +42,9 @@ window.onload = function(){
     var collectible8 = new CreateCollectible (8, 200, 200, 'imgs/rice.png');
     var collectible9 = new CreateCollectible (9, 200, 200, 'imgs/sauce.png');
     var collectible10 = new CreateCollectible (10, 200, 200, 'imgs/sprout.png');
+
+    console.log(collectible1);
+    console.log(collectible2);
 
     /// store key codes and currently pressed ones
     var keys = {};
@@ -99,11 +102,11 @@ window.onload = function(){
 	  if (character.x <= 110) {
 	    character.x = 110;
 	  }
-	  if (character.x >= 1450) {
-	    character.x = 1450;
+	  if (character.x >= 1800) {
+	    character.x = 1800;
 	  }
-	  if (character.y >= 740) {
-	    character.y = 740;
+	  if (character.y >= 870) {
+	    character.y = 870;
 	  }
 
     };

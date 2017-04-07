@@ -34,12 +34,33 @@ img {
 
 }
 
+.collectibles {
+
+	animation: MoveUpDown 1s linear infinite;
+	position: relative;
+	left: 0;
+	bottom: 0;
+
+}
+
+@keyframes MoveUpDown {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 10px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
 #gameboard {
 
 	background-color: #def3f3;
 	margin: 50px 100px 0px 100px;
-	height: 600px;
-	width: 1400px;
+	height: 800px;
+	width: 1800px;
 	/*overflow: hidden;*/
 
 }
