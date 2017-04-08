@@ -6,7 +6,7 @@
 
 body {
 
-	background-color: #111111;
+	background-color: #FFB996;
 	margin: 0px;
 	padding: 0px;
 
@@ -22,7 +22,8 @@ h1 {
 
 h4 {
 
-	font-size: 1em;
+	margin-top: -10px;
+	font-size: 1.5em;
 	text-align: center;
 
 }
@@ -38,8 +39,14 @@ img {
 
 	animation: MoveUpDown 1s linear infinite;
 	position: relative;
-	left: 0;
-	bottom: 0;
+	top: 30px
+	left: 30px;
+	width: 48px;
+	height: 48px;
+	margin-left: 100px;
+	margin-top: 100px;
+	display: inline-block;
+	float: left;
 
 }
 
@@ -60,7 +67,7 @@ img {
 	background-color: #def3f3;
 	margin: 50px 100px 0px 100px;
 	height: 800px;
-	width: 1800px;
+	width: 1920px;
 	/*overflow: hidden;*/
 
 }
@@ -75,7 +82,6 @@ img {
 
 #collectible {
 
-    position: absolute;
     width: 30px;
     height: 30px;
     background: blue;
@@ -92,7 +98,7 @@ img {
 
 	padding-left: 40px;
 	margin-top: 0px;
-	font-size: 2em;
+	font-size: 3em;
 
 }
 

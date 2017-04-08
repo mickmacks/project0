@@ -8,43 +8,31 @@ window.onload = function(){
 	p1Count.innerHTML = p1CurrCount;
 
     // Create a constructor functions to create and space out multiple divs.
-    function CreateCollectible (id, lat, lng, src) {
+    function CreateCollectible (id, src) {
 
     	// Create a div (collectible)
     	this.img = document.createElement('img'),
-    	this.img.id = id,
+    	this.img.id = 'collectible' + id,
     	this.img.className = 'collectibles',
+    	this.img.src = src,
 
     	// Set the position of the collectible.
-    	this.img.style.width = '48px',
-    	this.img.style.height = '48px',
-    	this.img.src = src,
-    	this.img.style.top = '30px',
-    	this.img.style.left = '30px',
-    	this.img.style.marginLeft = lat + 'px',
-    	this.img.style.marginTop = lng + 'px',
-    	this.img.style.display = 'inline-block',
-    	this.img.style.float = 'left'
-
     	document.getElementById('gameboard').appendChild(this.img);
 
     };
 
     // Add the collectible to the board
 
-    var collectible1 = new CreateCollectible (1, 200, 200, 'imgs/cabbage.png');
-    var collectible2 = new CreateCollectible (2, 200, 200, 'imgs/chili.png');
-    var collectible3 = new CreateCollectible (3, 200, 200, 'imgs/egg.png');
-    var collectible4 = new CreateCollectible (4, 200, 200, 'imgs/garlic.png');
-    var collectible5 = new CreateCollectible (5, 200, 200, 'imgs/meat.png');
-    var collectible6 = new CreateCollectible (6, 200, 200, 'imgs/mushroom.png');
-    var collectible7 = new CreateCollectible (7, 200, 200, 'imgs/onion.png');
-    var collectible8 = new CreateCollectible (8, 200, 200, 'imgs/rice.png');
-    var collectible9 = new CreateCollectible (9, 200, 200, 'imgs/sauce.png');
-    var collectible10 = new CreateCollectible (10, 200, 200, 'imgs/sprout.png');
-
-    console.log(collectible1);
-    console.log(collectible2);
+    var collectible1 = new CreateCollectible (1, 'imgs/cabbage.png');
+    var collectible2 = new CreateCollectible (2, 'imgs/chili.png');
+    var collectible3 = new CreateCollectible (3, 'imgs/egg.png');
+    var collectible4 = new CreateCollectible (4, 'imgs/garlic.png');
+    var collectible5 = new CreateCollectible (5, 'imgs/meat.png');
+    var collectible6 = new CreateCollectible (6, 'imgs/mushroom.png');
+    var collectible7 = new CreateCollectible (7, 'imgs/onion.png');
+    var collectible8 = new CreateCollectible (8, 'imgs/rice.png');
+    var collectible9 = new CreateCollectible (9, 'imgs/sauce.png');
+    var collectible10 = new CreateCollectible (10, 'imgs/sprout.png');
 
     /// store key codes and currently pressed ones
     var keys = {};
@@ -86,6 +74,8 @@ window.onload = function(){
     var detectCharacterMovement = function(){
       if ( keys[keys.LEFT] ) {
         moveCharacter(-1, 0);
+        character.src = 'imgs/player1b.png';
+        console.log(character.src);
       }
       if ( keys[keys.RIGHT] ) {
         moveCharacter(1, 0);
@@ -102,8 +92,8 @@ window.onload = function(){
 	  if (character.x <= 110) {
 	    character.x = 110;
 	  }
-	  if (character.x >= 1800) {
-	    character.x = 1800;
+	  if (character.x >= 1920) {
+	    character.x = 1920;
 	  }
 	  if (character.y >= 870) {
 	    character.y = 870;
