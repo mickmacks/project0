@@ -49,6 +49,16 @@ window.onload = function(){
       element: document.getElementById("character")
     };
 
+	// test Collectible
+	var testCollectible = {
+
+		element: document.getElementById('testCollectible'),
+		x: 50,
+		y: 50
+
+	}
+
+
     /// key detection (better to use addEventListener, but this will do)
     document.body.onkeyup = 
     document.body.onkeydown = function(e){
@@ -72,34 +82,51 @@ window.onload = function(){
 
     /// character control
     var detectCharacterMovement = function(){
-      if ( keys[keys.LEFT] ) {
-        moveCharacter(-1, 0);
-        character.src = 'imgs/player1b.png';
-        console.log(character.src);
-      }
-      if ( keys[keys.RIGHT] ) {
-        moveCharacter(1, 0);
-      }
-      if ( keys[keys.UP] ) {
-        moveCharacter(0, -1);
-      }
-      if ( keys[keys.DOWN] ) {
-        moveCharacter(0, 1);
-      }
-	  if (character.y <= 220) {
-	    character.y = 220;
-	  }
-	  if (character.x <= 110) {
-	    character.x = 110;
-	  }
-	  if (character.x >= 1920) {
-	    character.x = 1920;
-	  }
-	  if (character.y >= 870) {
-	    character.y = 870;
-	  }
+
+		// Detecting key press
+		if ( keys[keys.LEFT] ) {
+			moveCharacter(-1, 0);
+		// character.src = 'imgs/player1b.png';
+		// console.log(character.src);
+		}
+		if ( keys[keys.RIGHT] ) {
+			moveCharacter(1, 0);
+		}
+		if ( keys[keys.UP] ) {
+			moveCharacter(0, -1);
+		}
+		if ( keys[keys.DOWN] ) {
+			moveCharacter(0, 1);
+		}
+
+		// Detecting barriers
+		if (character.y <= 220) {
+			character.y = 220;
+		}
+		if (character.x <= 110) {
+			character.x = 110;
+		}
+		if (character.x >= 1920) {
+			character.x = 1920;
+		}
+		if (character.y >= 870) {
+			character.y = 870;
+		}
 
     };
+
+    // collision check function
+    function collisionCheck () {
+		
+		if (character.x < testCollectible.x + testCollectible.width &&
+			character.x + character.width > testCollectible.x &&
+			character.y < testCollectible.y + testCollectible.height &&
+			character.height + character.y > testCollectible.y) {
+
+			console.log('collision detected!');
+			testCollectible.style.display = 'none';
+		}
+	}
 
     /// update current position on screen
     moveCharacter();
@@ -107,7 +134,8 @@ window.onload = function(){
     /// game loop
     setInterval(function(){
       detectCharacterMovement();
+      collisionCheck();
     }, 1000/30);
 
-
 }
+
