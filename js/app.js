@@ -1,11 +1,10 @@
 console.log('Working JS');
 
+var p1CurrCount = 0;
+
 window.onload = function(){ 
 
 	// store collectible values
-	var p1CurrCount = 0;
-	var p1Count = document.getElementById('player1Count');
-	p1Count.innerHTML = p1CurrCount;
 
     // Create a constructor functions to create and space out multiple divs.
     function CreateCollectible (id, src) {
@@ -48,16 +47,6 @@ window.onload = function(){
       speedMultiplier: 10,
       element: document.getElementById("character")
     };
-
-	// test Collectible
-	var testCollectible = {
-
-		element: document.getElementById('testCollectible'),
-		x: 50,
-		y: 50
-
-	}
-
 
     /// key detection (better to use addEventListener, but this will do)
     document.body.onkeyup = 
@@ -115,17 +104,28 @@ window.onload = function(){
 
     };
 
+    	var rect1 = document.getElementById('character').getBoundingClientRect();
+    	var rect2 = document.getElementById('player1Count').getBoundingClientRect();
+
     // collision check function
     function collisionCheck () {
 		
-		if (character.x < testCollectible.x + testCollectible.width &&
-			character.x + character.width > testCollectible.x &&
-			character.y < testCollectible.y + testCollectible.height &&
-			character.height + character.y > testCollectible.y) {
-
-			console.log('collision detected!');
-			testCollectible.style.display = 'none';
+		if (document.getElementById('character').getBoundingClientRect().left < document.getElementById('collectible5').getBoundingClientRect().left + document.getElementById('collectible5').getBoundingClientRect().width &&
+		   document.getElementById('character').getBoundingClientRect().left + document.getElementById('character').getBoundingClientRect().width > document.getElementById('collectible5').getBoundingClientRect().left &&
+		   document.getElementById('character').getBoundingClientRect().top < document.getElementById('collectible5').getBoundingClientRect().top + document.getElementById('collectible5').getBoundingClientRect().height &&
+		   document.getElementById('character').getBoundingClientRect().height + document.getElementById('character').getBoundingClientRect().top > document.getElementById('collectible5').getBoundingClientRect().top) {
+		   collectible5.img.style.display = 'none';
+		   p1CurrCount++;
+		   document.getElementById('player1Count').innerHTML = p1CurrCount;
+		   location.reload;
 		}
+
+		// using real numbers to check:
+		// if (224 < 303 && 304 > 240 && 288 < 361 && 408 > 298) {};
+		// so it should work but it doesn't. fantastic.
+
+	// checkForWinner();
+
 	}
 
     /// update current position on screen
@@ -134,8 +134,9 @@ window.onload = function(){
     /// game loop
     setInterval(function(){
       detectCharacterMovement();
-      collisionCheck();
     }, 1000/30);
+
+    setInterval(collisionCheck, 500);
 
 }
 

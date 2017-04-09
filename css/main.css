@@ -1,5 +1,6 @@
 * {
 
+	border: 1px solid blue;
 	color: white;
 
 }
@@ -104,7 +105,7 @@ img {
 
 #testCollectible {
 
-	margin-left: 200px;
+	position: absolute;
 	display: inline-block;
 
 }
