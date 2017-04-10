@@ -46,10 +46,18 @@
 		<main id='gameboard'>
 
 			<img src='imgs/player1.png' id="character"></div>
+
+			<img src='imgs/player2.png' id="character2"></div>
 			
-			<div id="collectibleCount"></div>
-				<p id='player1Score'><img src='imgs/food.png'> = <span id='player1Count'>0</span></p>
+			<div class="collectibleCount"></div>
+				<p class='playerScore'><img src='imgs/food1.png'> = <span id='player1Count'>0</span></p>
 			</div>
+			
+			<div class="collectibleCount"></div>
+				<p class='playerScore'><img src='imgs/food2.png'> = <span id='player2Count'>0</span></p>
+			</div>
+
+			<br />
 
 			<audio id="itemAudio" src="audio/item.wav" ></audio>
 			<audio id="winAudio" src="audio/success.wav" ></audio>
@@ -62,7 +70,7 @@
 	    <!-- Modal content -->
 	      <div class="modal-content">
 
-	        <img src='imgs/winner.gif' id='winnerImage'>
+	        <img src='imgs/p1wins.gif' id='winnerImage'>
 	        <button id="player1Close" class="button">PLAY AGAIN</button>   
 	        
 	      </div>

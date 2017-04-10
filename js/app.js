@@ -1,5 +1,6 @@
 // track player count
 var p1CurrCount = 0;
+var p2CurrCount = 0;
 
 var gameActive = true;
 
@@ -38,6 +39,10 @@ window.onload = function(){
         keys.LEFT = 37;
         keys.RIGHT = 39;
         keys.DOWN = 40;
+        keys.W = 87;
+        keys.A = 65;
+        keys.S = 83;
+        keys.D = 68;
 
     /// store reference to character's position and element
     var character = {
@@ -45,6 +50,14 @@ window.onload = function(){
       y: 500,
       speedMultiplier: 10,
       element: document.getElementById("character")
+    };
+
+    // store reference to character's position and element
+    var character2 = {
+      x: 1850,
+      y: 500,
+      speedMultiplier: 10,
+      element: document.getElementById("character2")
     };
 
     /// key detection (better to use addEventListener, but this will do)
@@ -68,14 +81,20 @@ window.onload = function(){
       character.element.style.top = character.y + 'px';
     };
 
+    /// character2 movement update
+    var moveCharacter2 = function(dx, dy){
+      character2.x += (dx||0) * character2.speedMultiplier;
+      character2.y += (dy||0) * character2.speedMultiplier;
+      character2.element.style.left = character2.x + 'px';
+      character2.element.style.top = character2.y + 'px';
+    };
+
     /// character control
     var detectCharacterMovement = function(){
 
-		// Detecting key press
+		// Detecting key press Player 1
 		if ( keys[keys.LEFT] ) {
 			moveCharacter(-1, 0);
-		// character.src = 'imgs/player1b.png';
-		// console.log(character.src);
 		}
 		if ( keys[keys.RIGHT] ) {
 			moveCharacter(1, 0);
@@ -85,6 +104,20 @@ window.onload = function(){
 		}
 		if ( keys[keys.DOWN] ) {
 			moveCharacter(0, 1);
+		}
+
+		// Detecting key press Player2
+		if ( keys[keys.A] ) {
+			moveCharacter2(-1, 0);
+		}
+		if ( keys[keys.D] ) {
+			moveCharacter2(1, 0);
+		}
+		if ( keys[keys.W] ) {
+			moveCharacter2(0, -1);
+		}
+		if ( keys[keys.S] ) {
+			moveCharacter2(0, 1);
 		}
 
 		// Detecting barriers
@@ -99,6 +132,18 @@ window.onload = function(){
 		}
 		if (character.y >= 870) {
 			character.y = 870;
+		}
+		if (character2.y <= 220) {
+			character2.y = 220;
+		}
+		if (character2.x <= 110) {
+			character2.x = 110;
+		}
+		if (character2.x >= 1920) {
+			character2.x = 1920;
+		}
+		if (character2.y >= 870) {
+			character2.y = 870;
 		}
 
     };
@@ -124,6 +169,31 @@ window.onload = function(){
     		gameActive = false;
 
     		winAudioPlay();
+
+    		if (p2CurrCount > p1CurrCount) {
+
+    			document.getElementById('winnerImage').src = 'imgs/p2wins.gif';
+
+    			var modal = document.getElementById('player1Wins');
+				modal.style.display = "block";
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementById('player1Close');
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+			    	modal.style.display = "none";
+			    	window.location.reload(true);
+				}
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			        window.location.reload(true);
+	  				}
+				};
+
+    		}
 	      	
 			var modal = document.getElementById('player1Wins');
 			modal.style.display = "block";
@@ -163,14 +233,15 @@ window.onload = function(){
     	for (var i = 1; i < 11; i++) {	
 
     	var rect1 = document.getElementById('character').getBoundingClientRect();
-    	var rect2 = document.getElementById('collectible' + i).getBoundingClientRect();
+    	var rect2 = document.getElementById('character2').getBoundingClientRect();
+    	var coll = document.getElementById('collectible' + i).getBoundingClientRect();
     	var currCollectible = document.getElementById('collectible' + i)
 
 
-			if (rect1.left < rect2.left + rect2.width &&
-			   rect1.left + rect1.width > rect2.left &&
-			   rect1.top < rect2.top + rect2.height &&
-			   rect1.height + rect1.top > rect2.top && currCollectible.style.visibility != 'hidden') {
+			if (rect1.left < coll.left + coll.width &&
+			   rect1.left + rect1.width > coll.left &&
+			   rect1.top < coll.top + coll.height &&
+			   rect1.height + rect1.top > coll.top && currCollectible.style.visibility != 'hidden') {
 
 			   currCollectible.style.visibility = 'hidden';
 			   itemAudioPlay();
@@ -178,17 +249,28 @@ window.onload = function(){
 			   document.getElementById('player1Count').innerHTML = p1CurrCount;
 			   location.reload;
 			}
+			
+			else if (rect2.left < coll.left + coll.width &&
+			   rect2.left + rect2.width > coll.left &&
+			   rect2.top < coll.top + coll.height &&
+			   rect2.height + rect2.top > coll.top && currCollectible.style.visibility != 'hidden') {
+
+			   currCollectible.style.visibility = 'hidden';
+			   itemAudioPlay();
+			   p2CurrCount++;
+			   document.getElementById('player2Count').innerHTML = p2CurrCount;
+			   location.reload;
+			}			
 
 		}
 
 		checkForWinner();
 
-		
-
 	}
 
     // update current position on screen
     moveCharacter();
+    moveCharacter2();
 
     // game loop
     setInterval(function(){
@@ -197,12 +279,10 @@ window.onload = function(){
 
     setInterval(function(){
       
-    	if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png') {
-
+    	if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/co.png') {
     		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png'
 
     	} else if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png') {
-
     		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png'
     	}
       
@@ -212,9 +292,7 @@ window.onload = function(){
     setInterval(function(){
 
     	if (gameActive === true) {
-
     		collisionCheck();
-
     	}
     		
     }, 500);
