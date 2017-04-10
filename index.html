@@ -38,9 +38,11 @@
 
 	<body>
 
+		<!-- Intro -->
 		<h1>B A P &nbsp I T</h1>
 		<h4>Collect all the ingredients you need to make a delicious bowl of BiBimBap!</h4>
 		
+		<!-- Set up Game Board -->
 		<main id='gameboard'>
 
 			<img src='imgs/player1.png' id="character"></div>
@@ -51,18 +53,21 @@
 
 		</main>
 
-		    <!-- Player 1  Modal -->
+		<!-- Player 1  Modal -->
 	    <div id="player1Wins" class="modal">
 
 	    <!-- Modal content -->
 	      <div class="modal-content">
 
 	        <img src='imgs/winner.gif' id='winnerImage'>
-	        <button id="player1Close" class="close">PLAY AGAIN</button>   
+	        <button id="player1Close" class="button">PLAY AGAIN</button>   
 	        
 	      </div>
 
 	    </div>
+
+	    <!-- Player 1  Modal -->
+	    <button id="restart" class="button" onClick="window.location.reload()">RESTART</button> 
 
 	</body>
 
