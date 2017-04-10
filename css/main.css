@@ -5,8 +5,35 @@ body {
 	background-color: #FFB996;
 	margin: 0px;
 	padding: 0px;
+	animation:bkgLoop 40s;
+	-moz-animation:bkgLoop 40s infinite; /* Firefox */
+	-webkit-animation:bkgLoop 40s infinite; /* Safari and Chrome */
 
 }
+
+@-moz-keyframes bkgLoop {
+	
+	0%   {background:#FFB996;}
+	20%  {background:#f8f08d;}
+	40%  {background:#cff0be;}
+	60%  {background:#9ebffa;}
+	78%  {background:#9e87fd;}
+	92%  {background:#fa9eb3;}
+	100% {background:#FFB996;}
+}
+
+@-webkit-keyframes bkgLoop {
+
+	0%   {background:#FFB996;}
+	20%  {background:#f8f08d;}
+	40%  {background:#cff0be;}
+	60%  {background:#9ebffa;}
+	78%  {background:#9e87fd;}
+	92%  {background:#fa9eb3;}
+	100% {background:#FFB996;}
+
+}
+  
 
 h1 {
 
@@ -218,15 +245,15 @@ h4 {
 
 #restart {
 
-    background-color: #fff;
-    color: #FFB996;
+    color: white;
     font-size: 24px;
-    border: none;
+    border: 1px solid white;
     border-radius: 10px;
     padding: 15px 30px;
     letter-spacing: 3px;
     margin: 20px 45%;
-    -webkit-filter: drop-shadow(5px 5px 5px #999);
-	filter: drop-shadow(5px 5px 5px #999);
+	animation:bkgLoop 40s;
+	-moz-animation:bkgLoop 40s infinite; /* Firefox */
+	-webkit-animation:bkgLoop 40s infinite; /* Safari and Chrome */
 
 }

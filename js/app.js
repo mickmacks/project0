@@ -1,6 +1,8 @@
 // track player count
 var p1CurrCount = 0;
 
+var gameActive = true;
+
 window.onload = function(){ 
 
     // Create a constructor functions to create and space out multiple divs.
@@ -102,6 +104,13 @@ window.onload = function(){
     };
 
 
+    function winAudioPlay(){
+
+	var winAudio = document.getElementById("winAudio");
+	winAudio.play();
+
+    }
+
     // Check For Winner
 
     function checkForWinner() {
@@ -113,26 +122,37 @@ window.onload = function(){
     		collectible9.img.style.visibility === 'hidden' && collectible10.img.style.visibility === 'hidden') {
 
     		gameActive = false;
+
+    		winAudioPlay();
 	      	
-				var modal = document.getElementById('player1Wins');
-				modal.style.display = "block";
+			var modal = document.getElementById('player1Wins');
+			modal.style.display = "block";
 
-				// Get the <span> element that closes the modal
-				var span = document.getElementById('player1Close');
+			// Get the <span> element that closes the modal
+			var span = document.getElementById('player1Close');
 
-				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				    modal.style.display = "none";
-				    window.location.reload(true);
-				}
-				// When the user clicks anywhere outside of the modal, close it
-				window.onclick = function(event) {
-				    if (event.target == modal) {
-				        modal.style.display = "none";
-				        window.location.reload(true);
-		  				}
-				};
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			    modal.style.display = "none";
+			    window.location.reload(true);
+			}
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			        window.location.reload(true);
+	  				}
+			};
+
+			return;
     	}
+    }
+
+    function itemAudioPlay(){
+
+    	var itemAudio = document.getElementById("itemAudio");
+    	itemAudio.play();
+
     }
 
     // collision check function
@@ -153,6 +173,7 @@ window.onload = function(){
 			   rect1.height + rect1.top > rect2.top && currCollectible.style.visibility != 'hidden') {
 
 			   currCollectible.style.visibility = 'hidden';
+			   itemAudioPlay();
 			   p1CurrCount++;
 			   document.getElementById('player1Count').innerHTML = p1CurrCount;
 			   location.reload;
@@ -161,6 +182,8 @@ window.onload = function(){
 		}
 
 		checkForWinner();
+
+		
 
 	}
 
@@ -186,7 +209,15 @@ window.onload = function(){
     }, 700);
 
     // collision check loop
-    setInterval(collisionCheck, 500);
+    setInterval(function(){
+
+    	if (gameActive === true) {
+
+    		collisionCheck();
+
+    	}
+    		
+    }, 500);
 
 }
 
