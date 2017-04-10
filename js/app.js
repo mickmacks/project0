@@ -267,14 +267,26 @@ window.onload = function(){
 
     setInterval(function(){
       
-    	if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/co.png') {
+    	if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png') {
     		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png'
 
     	} else if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png') {
     		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png'
     	}
+
+    	if (document.getElementById("character2").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player2.png') {
+    		document.getElementById("character2").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player2b.png'
+
+    	} else if (document.getElementById("character2").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player2b.png') {
+    		document.getElementById("character2").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player2.png'
+    	}
+      
       
     }, 700);
+
+
+
+
 
     // collision check loop
     setInterval(function(){
