@@ -1,10 +1,5 @@
-console.log('Working JS');
-
 // track player count
 var p1CurrCount = 0;
-
-// store collectible values
-var collectibles = []
 
 window.onload = function(){ 
 
@@ -20,8 +15,6 @@ window.onload = function(){
     	// Set the position of the collectible.
     	document.getElementById('gameboard').appendChild(this.img);
 
-    	// Add to collectibles array
-    	collectibles.push(this);
 
     };
 
@@ -108,12 +101,46 @@ window.onload = function(){
 
     };
 
+
+    // Check For Winner
+
+    function checkForWinner() {
+
+    	if (collectible1.img.style.visibility === 'hidden' && collectible2.img.style.visibility === 'hidden' && 
+    		collectible3.img.style.visibility === 'hidden' && collectible4.img.style.visibility === 'hidden' && 
+    		collectible5.img.style.visibility === 'hidden' && collectible6.img.style.visibility === 'hidden' && 
+    		collectible7.img.style.visibility === 'hidden' && collectible8.img.style.visibility === 'hidden' && 
+    		collectible9.img.style.visibility === 'hidden' && collectible10.img.style.visibility === 'hidden') {
+
+    		gameActive = false;
+	      	
+				var modal = document.getElementById('player1Wins');
+				modal.style.display = "block";
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementById('player1Close');
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				    modal.style.display = "none";
+				    window.location.reload(true);
+				}
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				    if (event.target == modal) {
+				        modal.style.display = "none";
+				        window.location.reload(true);
+		  				}
+				};
+    	}
+    }
+
     // collision check function
     function collisionCheck () {
 		
     	// for (collectible of collectibles) {
 
-    	for (var i = 1; i < collectibles.length -1; i++) {	
+    	for (var i = 1; i < 11; i++) {	
 
     	var rect1 = document.getElementById('character').getBoundingClientRect();
     	var rect2 = document.getElementById('collectible' + i).getBoundingClientRect();
@@ -123,9 +150,9 @@ window.onload = function(){
 			if (rect1.left < rect2.left + rect2.width &&
 			   rect1.left + rect1.width > rect2.left &&
 			   rect1.top < rect2.top + rect2.height &&
-			   rect1.height + rect1.top > rect2.top) {
+			   rect1.height + rect1.top > rect2.top && currCollectible.style.visibility != 'hidden') {
 
-			   currCollectible.style.display = 'none';
+			   currCollectible.style.visibility = 'hidden';
 			   p1CurrCount++;
 			   document.getElementById('player1Count').innerHTML = p1CurrCount;
 			   location.reload;
@@ -133,18 +160,32 @@ window.onload = function(){
 
 		}
 
-	// checkForWinner();
+		checkForWinner();
 
 	}
 
-    /// update current position on screen
+    // update current position on screen
     moveCharacter();
 
-    /// game loop
+    // game loop
     setInterval(function(){
       detectCharacterMovement();
     }, 1000/30);
 
+    setInterval(function(){
+      
+    	if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png') {
+
+    		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png'
+
+    	} else if (document.getElementById("character").src === 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1b.png') {
+
+    		document.getElementById("character").src = 'file:///Users/mahmoudbachir/wdi/14-Project0/project0/imgs/player1.png'
+    	}
+      
+    }, 700);
+
+    // collision check loop
     setInterval(collisionCheck, 500);
 
 }
