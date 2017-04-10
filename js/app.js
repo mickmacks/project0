@@ -108,25 +108,30 @@ window.onload = function(){
 
     };
 
-    	var rect1 = document.getElementById('character').getBoundingClientRect();
-    	var rect2 = document.getElementById('player1Count').getBoundingClientRect();
-
     // collision check function
     function collisionCheck () {
 		
-		if (document.getElementById('character').getBoundingClientRect().left < document.getElementById('collectible5').getBoundingClientRect().left + document.getElementById('collectible5').getBoundingClientRect().width &&
-		   document.getElementById('character').getBoundingClientRect().left + document.getElementById('character').getBoundingClientRect().width > document.getElementById('collectible5').getBoundingClientRect().left &&
-		   document.getElementById('character').getBoundingClientRect().top < document.getElementById('collectible5').getBoundingClientRect().top + document.getElementById('collectible5').getBoundingClientRect().height &&
-		   document.getElementById('character').getBoundingClientRect().height + document.getElementById('character').getBoundingClientRect().top > document.getElementById('collectible5').getBoundingClientRect().top) {
-		   collectible5.img.style.display = 'none';
-		   p1CurrCount++;
-		   document.getElementById('player1Count').innerHTML = p1CurrCount;
-		   location.reload;
-		}
+    	// for (collectible of collectibles) {
 
-		// using real numbers to check:
-		// if (224 < 303 && 304 > 240 && 288 < 361 && 408 > 298) {};
-		// so it should work but it doesn't. fantastic.
+    	for (var i = 1; i < collectibles.length -1; i++) {	
+
+    	var rect1 = document.getElementById('character').getBoundingClientRect();
+    	var rect2 = document.getElementById('collectible' + i).getBoundingClientRect();
+    	var currCollectible = document.getElementById('collectible' + i)
+
+
+			if (rect1.left < rect2.left + rect2.width &&
+			   rect1.left + rect1.width > rect2.left &&
+			   rect1.top < rect2.top + rect2.height &&
+			   rect1.height + rect1.top > rect2.top) {
+
+			   currCollectible.style.display = 'none';
+			   p1CurrCount++;
+			   document.getElementById('player1Count').innerHTML = p1CurrCount;
+			   location.reload;
+			}
+
+		}
 
 	// checkForWinner();
 

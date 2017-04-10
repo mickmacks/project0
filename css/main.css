@@ -1,6 +1,5 @@
 * {
 
-	border: 1px solid blue;
 	color: white;
 
 }
@@ -81,13 +80,75 @@ img {
 
 }
 
-#collectible {
+#collectible1 {
 
-    width: 30px;
-    height: 30px;
-    background: blue;
+	left: 150px;
 
 }
+
+#collectible2 {
+
+	left: 340px;
+
+}
+
+#collectible3 {
+
+	left: 530px;
+
+}
+
+#collectible4 {
+
+	left: 720px;
+
+}
+
+#collectible5 {
+
+	left: 910px;
+
+}
+
+#collectible6 {
+
+	margin-top: 350px;
+	left: -590px;
+
+}
+
+#collectible7 {
+
+
+	margin-top: 350px;
+	left: -400px;
+
+
+}
+
+#collectible8 {
+
+
+	margin-top: 350px;
+	left: -210px;
+
+
+}
+
+#collectible9 {
+
+	margin-top: 350px;
+	left: -20px;
+
+}
+
+#collectible10 {
+
+	margin-top: 350px;
+	left: 170px;
+
+}
+
 
 #collectibleCount {
 
