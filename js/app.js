@@ -1,10 +1,12 @@
 console.log('Working JS');
 
+// track player count
 var p1CurrCount = 0;
 
-window.onload = function(){ 
+// store collectible values
+var collectibles = []
 
-	// store collectible values
+window.onload = function(){ 
 
     // Create a constructor functions to create and space out multiple divs.
     function CreateCollectible (id, src) {
@@ -18,10 +20,12 @@ window.onload = function(){
     	// Set the position of the collectible.
     	document.getElementById('gameboard').appendChild(this.img);
 
+    	// Add to collectibles array
+    	collectibles.push(this);
+
     };
 
     // Add the collectible to the board
-
     var collectible1 = new CreateCollectible (1, 'imgs/cabbage.png');
     var collectible2 = new CreateCollectible (2, 'imgs/chili.png');
     var collectible3 = new CreateCollectible (3, 'imgs/egg.png');
